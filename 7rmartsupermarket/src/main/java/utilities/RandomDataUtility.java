@@ -11,7 +11,6 @@ public class RandomDataUtility {
     public String createRandomPassword() {
     	return faker.internet().password();
     }
-    
     public String createRandomFullName() {
     	return faker.name().fullName();
     }

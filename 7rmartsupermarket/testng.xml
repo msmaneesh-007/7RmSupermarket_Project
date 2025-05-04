@@ -9,7 +9,6 @@
       <class name="testScript.ManageProductTest"></class>
      <class name="testScript.ManageNewsTest"></class>
      <class name="testScript.ManageCategoryTest"></class>
-      
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->

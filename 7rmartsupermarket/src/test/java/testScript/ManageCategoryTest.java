@@ -4,7 +4,6 @@ import java.io.IOException;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
-
 import automationCore.Base;
 import pages.LoginPage;
 import pages.ManageCategoryPage;

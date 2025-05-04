@@ -44,6 +44,7 @@ public class ManageCategoryPage {
 		JavascriptExecutor jsradio=(JavascriptExecutor)driver;
 		jsradio.executeScript("arguments[0].click();", topMenuradio);		
 		//jsradio.executeScript("window.scrollBy(0,150)", "");
+		
 	}
 	public void leftMenuRadio() {
 		JavascriptExecutor jsrightradio=(JavascriptExecutor)driver;
