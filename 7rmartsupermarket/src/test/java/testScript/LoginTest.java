@@ -24,7 +24,6 @@ public class LoginTest extends Base {
 		Assert.assertTrue(isdashboarddisplayed, "User is unable to login successfully");
 
 	}
-
 	@Test(priority = 2, description = "Verify Whether User IS Able To Login With Valid Username And Invalid Password")
 	public void verifyUserLoginWithValidUsernameAndInvalidPassword() throws IOException {
 		String username = ExcelUtility.getStringData(1, 0, "Login page");
