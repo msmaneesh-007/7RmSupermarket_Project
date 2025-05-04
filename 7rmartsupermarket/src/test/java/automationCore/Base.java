@@ -37,7 +37,6 @@ if(iTestResult.getStatus()==ITestResult.FAILURE)
 	screenShot.getScreenshot(driver, iTestResult.getName());
 
 }
-
 	//driver.quit();
 
 	
