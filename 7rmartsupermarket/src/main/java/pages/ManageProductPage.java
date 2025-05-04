@@ -42,6 +42,7 @@ public ManageProductPage(WebDriver driver) {
 @FindBy(xpath="//input[@type='radio' and @name='featured' and @value='yes']")private WebElement featuredYesRadio;
 @FindBy(xpath="//input[@type='radio' and @name='combo' and @checked=\"checked")private WebElement comboPackNoRadio;
 @FindBy(xpath="//button[text()='Save']")private WebElement saveButton;
+@FindBy(xpath="//h5[text()= ' Alert!']")private WebElement errorAlert;
 @FindBy(xpath="//a[@onclick=\'click_button(2)']")private WebElement searchButtonBlue;
 @FindBy(xpath="//input[@placeholder='Title']")private WebElement searchWithTittle;
 @FindBy(xpath="//button[text()='Search']")private WebElement searchButtonRed;
@@ -96,7 +97,7 @@ public void description(String description) {
 	descriptionTxt.sendKeys(description);
 }
 public void imagefile() {
-	imageFileselect.sendKeys("C:\\Users\\msman\\git\\Automation_21-03-2025\\AutomationCourse\\src\\test\\resources\\porsche 911.jpeg");
+	imageFileselect.sendKeys("C:\\Users\\msman\\git\\7RmSupermarket_Project\\7rmartsupermarket\\src\\test\\resources\\porsche 911.jpeg");
 	
 }
 public void featuredRadio() {
@@ -125,5 +126,8 @@ public void finalSearchRed() {
 }
 public boolean searchIndex() {
 	return searchPageIndex.isDisplayed();
+}
+public boolean alert() {
+	return errorAlert.isDisplayed();
 }
 }

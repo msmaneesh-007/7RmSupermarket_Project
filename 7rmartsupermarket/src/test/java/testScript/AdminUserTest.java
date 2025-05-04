@@ -1,5 +1,6 @@
 package testScript;
 
+
 import java.io.IOException;
 
 import org.openqa.selenium.WebDriver;
@@ -9,7 +10,7 @@ import org.testng.annotations.Test;
 import automationCore.Base;
 import pages.AdminUserPage;
 import pages.LoginPage;
-import utilities.AdminUseCreation;
+
 import utilities.ExcelUtility;
 import utilities.RandomDataUtility;
 
@@ -50,7 +51,8 @@ public class AdminUserTest extends Base{
 		login.clickSignInButton();
 		AdminUserPage admin=new AdminUserPage(driver);
 		admin.adminUserCreationWindow();
-		String userDataToSearch=AdminUseCreation.getStringData(0, 0, "Sheet1");
+		admin.searchoption();
+		String userDataToSearch=ExcelUtility.getStringData(0, 0,"AdmincreationPage");
 		admin.userSearchWithNameAndType(userDataToSearch);
 		admin.userTypeForUserSearch();
 		boolean isTextdisplayedinresult=admin.textinresulthWindow();

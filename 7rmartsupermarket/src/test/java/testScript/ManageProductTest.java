@@ -1,5 +1,6 @@
 package testScript;
 
+
 import java.io.IOException;
 import java.time.Duration;
 
@@ -12,7 +13,7 @@ import automationCore.Base;
 import pages.LoginPage;
 import pages.ManageProductPage;
 import utilities.ExcelUtility;
-import utilities.ManageProductExcel;
+
 
 public class ManageProductTest extends Base{
      
@@ -28,30 +29,31 @@ public class ManageProductTest extends Base{
 		ManageProductPage manage=new ManageProductPage(driver);
 		manage.clickManageProduct();
 		manage.clickNew();
-		String tittle=ManageProductExcel.getStringData(0, 1, "sheet");
+		String tittle=ExcelUtility.getStringData(0, 1, "ManageProduct");
 		manage.enterTittle(tittle);
 		manage.selectProductType();
-		String tagname=ManageProductExcel.getStringData(1, 1, "sheet");
+		String tagname=ExcelUtility.getStringData(1, 1, "ManageProduct");
 		manage.entertagName(tagname);
 		manage.selectGorup();
 		manage.selectPriceType();
 		manage.minPieceSelect();
-		String maxqty=ManageProductExcel.getintigerData(2, 1, "sheet");
+		String maxqty=ExcelUtility.getintigerData(2, 1, "ManageProduct");
 		manage.enterMaxQty(maxqty);
-		String price=ManageProductExcel.getintigerData(3, 1, "sheet");
+		String price=ExcelUtility.getintigerData(3, 1, "ManageProduct");
 		manage.enterPrice(price);
-		String mrp=ManageProductExcel.getintigerData(4, 1, "sheet");
+		String mrp=ExcelUtility.getintigerData(4, 1, "ManageProduct");
 		manage.enterMrp(mrp);
-		String stock=ManageProductExcel.getintigerData(5, 1, "sheet");
+		String stock=ExcelUtility.getintigerData(5, 1, "ManageProduct");
 		manage.stockavailablity(stock);
-		String purchaseprice=ManageProductExcel.getintigerData(6, 1, "sheet");
+		String purchaseprice=ExcelUtility.getintigerData(6, 1, "ManageProduct");
 		manage.purchasePrice(purchaseprice);
-		String description=ManageProductExcel.getStringData(7, 1, "sheet");
+		String description=ExcelUtility.getStringData(7, 1, "ManageProduct");
 		manage.description(description);
 		manage.imagefile();
-		
 		manage.featuredRadio();
 		manage.saveButton();
+		boolean erroralertdisplay=manage.alert();
+		Assert.assertTrue(erroralertdisplay, "unable to click save");
 	}
 @Test	
 public void verifyWhetherUserisAbletoSearchProduct() throws IOException {
@@ -65,7 +67,7 @@ public void verifyWhetherUserisAbletoSearchProduct() throws IOException {
 	ManageProductPage search=new ManageProductPage(driver);
 	search.clickManageProduct();
 	search.initialsearchBlue();
-	String tittleSearch=ManageProductExcel.getStringData(8, 1, "sheet");
+	String tittleSearch=ExcelUtility.getStringData(8, 1, "ManageProduct");
 	search.searchWithName(tittleSearch);
 	search.finalSearchRed();
 	boolean isSearchindexDisplayed=search.searchIndex();

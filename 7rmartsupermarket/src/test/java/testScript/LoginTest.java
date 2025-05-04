@@ -8,6 +8,7 @@ import org.testng.annotations.Test;
 import automationCore.Base;
 import pages.LoginPage;
 import utilities.ExcelUtility;
+import utilities.RandomDataUtility;
 
 public class LoginTest extends Base{
 @Test
@@ -51,8 +52,12 @@ public void verifyLoginWithInvalidUsernameAndValidPassword() throws IOException 
 }
 @Test
 public void verifyUserLoginWithInvalidCredentials() throws IOException {
-	String username=ExcelUtility.getStringData(3, 0,"Login page");
-	String password=ExcelUtility.getStringData(3, 1, "Login page");
+	
+	RandomDataUtility random=new RandomDataUtility();
+	String username=random.createRandomUsername();
+	String password=random.createRandomPassword();
+	//String username=ExcelUtility.getStringData(3, 0,"Login page");
+	//String password=ExcelUtility.getStringData(3, 1, "Login page");
 	LoginPage login=new LoginPage(driver);
 	login.enterUserNameOnUserNameField(username);
 	login.enterPasswordOnPasswordField(password);

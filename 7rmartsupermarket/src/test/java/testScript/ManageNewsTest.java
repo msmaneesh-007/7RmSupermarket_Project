@@ -1,6 +1,8 @@
 package testScript;
 
 
+
+
 import java.io.IOException;
 
 import org.testng.Assert;
@@ -10,7 +12,7 @@ import automationCore.Base;
 import pages.LoginPage;
 import pages.ManageNewsPage;
 import utilities.ExcelUtility;
-import utilities.NewsDataExcel;
+
 
 public class ManageNewsTest extends Base{
 
@@ -27,7 +29,7 @@ public class ManageNewsTest extends Base{
 		news.clickManageNewsButton();
 		news.clickcreateNewButton();
 		news.clickNewsTextbox();
-		String newsTextToAdd=NewsDataExcel.getStringData(0, 0, "sheet");
+		String newsTextToAdd=ExcelUtility.getStringData(0, 0, "NewsPage");
 		news.readDataToNewsTextBox(newsTextToAdd);
 		news.clickSaveButton();
 		boolean isalertdisplayed=news.successAlertDisplay();
@@ -46,7 +48,7 @@ public class ManageNewsTest extends Base{
 		ManageNewsPage search=new ManageNewsPage(driver);
 		search.clickManageNewsButton();
 		search.clickSearchButton();
-	    String searchText=NewsDataExcel.getStringData(0, 0, "sheet");
+	    String searchText=ExcelUtility.getStringData(0, 0, "NewsPage");
 		search.enterSearchTittle(searchText);
 		search.searchForTheText();
 		boolean isWarningDisplayed=search.resultPageIndex();
