@@ -34,7 +34,6 @@ if(iTestResult.getStatus()==ITestResult.FAILURE)
 {
 
 	ScreenShotUtility screenShot=new ScreenShotUtility();
-
 	screenShot.getScreenshot(driver, iTestResult.getName());
 
 }
