@@ -37,6 +37,7 @@ public void verifyUserLoginWithValidUsernameAndInvalidPassword() throws IOExcept
 	String expected="7rmart supermarket";
 	Assert.assertEquals(actual, expected,"User is able to login with invalid username");
 }
+
 @Test(priority=3,description="Verify Whether User Is able To Login With INvalid Username ANd Valid Password")
 public void verifyLoginWithInvalidUsernameAndValidPassword() throws IOException {
 	String username=ExcelUtility.getStringData(2, 0,"Login page");
