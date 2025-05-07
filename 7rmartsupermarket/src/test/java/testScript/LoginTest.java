@@ -3,15 +3,17 @@ package testScript;
 import java.io.IOException;
 
 import org.testng.Assert;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import automationCore.Base;
+import constants.Messages;
 import pages.LoginPage;
 import utilities.ExcelUtility;
 import utilities.RandomDataUtility;
 
 public class LoginTest extends Base {
-	@Test(priority = 1, description = "verifying whether the user is able to login with valid credentials")
+	@Test(priority = 1, description = "verifying whether the user is able to login with valid credentials",retryAnalyzer=retry.Retry.class)
 	public void verifyUserLoginWithValidUserCredentials() throws IOException {
 		String username = ExcelUtility.getStringData(0, 0, "Login page");
 		String password = ExcelUtility.getStringData(0, 1, "Login page");
@@ -21,7 +23,7 @@ public class LoginTest extends Base {
 		login.clickRememberMe();
 		login.clickSignInButton();
 		boolean isdashboarddisplayed = login.dashboardDisplayed();
-		Assert.assertTrue(isdashboarddisplayed, "User is unable to login successfully");
+		Assert.assertTrue(isdashboarddisplayed,Messages.VALIDCREDENTIALERROR);
 
 	}
 	@Test(priority = 2, description = "Verify Whether User IS Able To Login With Valid Username And Invalid Password")
@@ -52,7 +54,7 @@ public class LoginTest extends Base {
 
 	}
 
-	@Test(priority = 4, description = "Verify user Login With invalid Username and Invalid Password")
+	@Test(priority = 4, description = "Verify user Login With invalid Username and Invalid Password",dataProvider="LoginProvider")
 	public void verifyUserLoginWithInvalidCredentials() throws IOException {
 
 		RandomDataUtility random = new RandomDataUtility();
@@ -68,5 +70,12 @@ public class LoginTest extends Base {
 		boolean isalertdisplayed = login.invalidUserAlert();
 		Assert.assertTrue(isalertdisplayed, "user is able to login with INVALID credentials");
 	}
-}
+	@DataProvider(name="LoginProvider")
+	public Object[][] getDataFromDataProvider() throws IOException
+	{
+		return new Object[][] { new Object[] {"admin","admin"},new Object[] {"123","1234"},new Object[] {
+				//ExcelUtility.getStringData(3, 0,"Login"),ExcelUtility.getStringData(3,1 ,"Login")
+					}
+		};
+}}
 
