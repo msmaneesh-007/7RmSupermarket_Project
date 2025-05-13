@@ -5,14 +5,17 @@ import java.io.IOException;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import automationCore.Base;
+import constants.Messages;
+import pages.HomePage;
 import pages.LoginPage;
 import pages.ManageCategoryPage;
 import utilities.ExcelUtility;
 import utilities.RandomDataUtility;
 
 public class ManageCategoryTest extends Base{
-
-	@Test
+HomePage home;
+ManageCategoryPage category;
+	@Test(description="To verify whether user is able to create new category")
 	public void verifyWhetherUserIsAbleToCreateNEwCategory() throws IOException {
 		String username = ExcelUtility.getStringData(0, 0, "Login page");
 		String password = ExcelUtility.getStringData(0, 1, "Login page");
@@ -20,20 +23,14 @@ public class ManageCategoryTest extends Base{
 		login.enterUserNameOnUserNameField(username);
 		login.enterPasswordOnPasswordField(password);
 		login.clickRememberMe();
-		login.clickSignInButton();
-		ManageCategoryPage category=new ManageCategoryPage(driver);
-		category.clickCategory();
+		home=login.clickSignInButton();
+		category=home.clickCategory();
 		category.createNewButon();
 		RandomDataUtility randomcategory=new RandomDataUtility();
 		String categoryName=randomcategory.createRandomProductCategory();
-		category.enterCategoryName(categoryName);
-		category.selectGroup();
-		category.selectimagefile();
-		category.leftMenuRadio();
-		category.topMenuradio();
-		category.saveButton();
+		category.enterCategoryName(categoryName).selectGroup().selectimagefile().leftMenuRadio().topMenuradio().saveButton();
 		boolean isalertdisplayed=category.getAlertText();
-		Assert.assertTrue(isalertdisplayed, "unable to Save Category");
+		Assert.assertTrue(isalertdisplayed, Messages.CATEGORYSAVEERROR);
 		
 	}
 }

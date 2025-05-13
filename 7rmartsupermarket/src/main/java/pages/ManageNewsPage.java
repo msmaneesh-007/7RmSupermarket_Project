@@ -13,7 +13,7 @@ public ManageNewsPage(WebDriver driver) {
 	
 }
 
-@FindBy(xpath="//p[text()='Manage News']")private WebElement newsWindowButton;
+
 @FindBy(xpath="//a[contains (text(),' New')]")private WebElement createNewNewsButton;
 @FindBy(id="news")private WebElement textBoxForNews;
 @FindBy(xpath="//button[text()='Save']")private WebElement saveButton;
@@ -26,38 +26,45 @@ public ManageNewsPage(WebDriver driver) {
 
 
 
-public void clickManageNewsButton() {
-	newsWindowButton.click();
-}
-public void clickcreateNewButton() {
+
+public ManageNewsPage clickcreateNewButton() {
 	
 	createNewNewsButton.click();
+	return this;
 }
-public void clickNewsTextbox() {
+public ManageNewsPage clickNewsTextbox() {
 	textBoxForNews.click();
+	return this;
+	
 }
-public void readDataToNewsTextBox(String newsTextToAdd) {
+public ManageNewsPage readDataToNewsTextBox(String newsTextToAdd) {
 	
 	textBoxForNews.sendKeys(newsTextToAdd);
+	return this;
 	}
-public void clickSaveButton() {
+public ManageNewsPage clickSaveButton() {
 	saveButton.click();
+	return this;
 }
 public boolean successAlertDisplay() {
 	return successalert.isDisplayed();
 }
 
-public void clickSearchButton() {
+public ManageNewsPage clickSearchButton() {
 	searchbutton.click();
+	return this;
 }
-public void enterSearchTittle(String searchText) {
+public ManageNewsPage enterSearchTittle(String searchText) {
 	searchtextField.click();
 	
 	searchtextField.sendKeys(searchText);
+	return this;
+	
 	
 }
-public void searchForTheText() {
+public ManageNewsPage searchForTheText() {
 	finalSearchButton.click();
+	return this;
 	
 	
 }

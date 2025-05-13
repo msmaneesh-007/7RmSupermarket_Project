@@ -9,14 +9,17 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import automationCore.Base;
+import constants.Messages;
+import pages.HomePage;
 import pages.LoginPage;
 import pages.ManageNewsPage;
 import utilities.ExcelUtility;
 
 
 public class ManageNewsTest extends Base{
-
-	@Test
+HomePage home;
+ManageNewsPage news;
+	@Test(description="To verify whether user is able to add news")
 	public void VerifyWhetheruUserIsAbleToAddNews() throws IOException {
 		String username=ExcelUtility.getStringData(0, 0,"Login page");
 		String password=ExcelUtility.getStringData(0, 1, "Login page");
@@ -24,19 +27,17 @@ public class ManageNewsTest extends Base{
 		login.enterUserNameOnUserNameField(username);
 		login.enterPasswordOnPasswordField(password);
 		login.clickRememberMe();
-		login.clickSignInButton();
-		ManageNewsPage news= new ManageNewsPage(driver);
-		news.clickManageNewsButton();
-		news.clickcreateNewButton();
-		news.clickNewsTextbox();
+		home=login.clickSignInButton();
+		news=home.clickManageNewsButton();
+		news.clickcreateNewButton().clickNewsTextbox();
 		String newsTextToAdd=ExcelUtility.getStringData(0, 0, "NewsPage");
 		news.readDataToNewsTextBox(newsTextToAdd);
 		news.clickSaveButton();
 		boolean isalertdisplayed=news.successAlertDisplay();
-		Assert.assertTrue(isalertdisplayed, "news creation failed");
+		Assert.assertTrue(isalertdisplayed, Messages.NEWSCREATIONFAILERROR);
 		
 	}
-	@Test
+	@Test(description="To verify whether user is able to search for the news created")
 	public void verifywhetherUserIsAbleToSearchNews() throws IOException {
 		String username=ExcelUtility.getStringData(0, 0,"Login page");
 		String password=ExcelUtility.getStringData(0, 1, "Login page");
@@ -44,14 +45,12 @@ public class ManageNewsTest extends Base{
 		login.enterUserNameOnUserNameField(username);
 		login.enterPasswordOnPasswordField(password);
 		login.clickRememberMe();
-		login.clickSignInButton();
-		ManageNewsPage search=new ManageNewsPage(driver);
-		search.clickManageNewsButton();
-		search.clickSearchButton();
+		home=login.clickSignInButton();
+		news=home.clickManageNewsButton();
+		news.clickSearchButton();
 	    String searchText=ExcelUtility.getStringData(0, 0, "NewsPage");
-		search.enterSearchTittle(searchText);
-		search.searchForTheText();
-		boolean isWarningDisplayed=search.resultPageIndex();
-		Assert.assertTrue(isWarningDisplayed,"no search results found");
+		news.enterSearchTittle(searchText).searchForTheText();
+		boolean isWarningDisplayed=news.resultPageIndex();
+		Assert.assertTrue(isWarningDisplayed,Messages.SEARCHFAILERROR);
 	}
 }

@@ -26,20 +26,26 @@ public class LoginPage {
 	@FindBy(xpath="//b[text()='7rmart supermarket']") private WebElement pagetitle;
 	@FindBy(xpath="//div[@class=\"alert alert-danger alert-dismissible\"]") private WebElement alert;
 
-	public void enterUserNameOnUserNameField(String username) {
+	public LoginPage enterUserNameOnUserNameField(String username) {
 		usernameField.sendKeys(username);
+		return this;
 	}
 
-	public void enterPasswordOnPasswordField(String password) {
+	public LoginPage enterPasswordOnPasswordField(String password) {
 		passwordField.sendKeys(password);
+		return this;
+		
 	}
 
-	public void clickRememberMe() {
+	public LoginPage clickRememberMe() {
 		remembermeField.click();
+		return this;
+		
 	}
 
-	public void clickSignInButton() {
+	public HomePage clickSignInButton() {
 		signin.click();
+		return new HomePage(driver);
 
 	}
 	public boolean dashboardDisplayed() {

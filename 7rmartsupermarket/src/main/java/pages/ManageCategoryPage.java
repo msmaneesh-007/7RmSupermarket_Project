@@ -7,6 +7,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import constants.Constant;
+
 public class ManageCategoryPage {
 
 	public WebDriver driver;
@@ -14,7 +16,7 @@ public class ManageCategoryPage {
 		this.driver=driver;
 		PageFactory.initElements(driver, this);
 	}
-	@FindBy(xpath="//p[text()='Manage Category']")private WebElement manageCategoryButton;
+	
 	@FindBy(xpath="//a[text()=' New']")private WebElement createNewButton;
 	@FindBy(id="category")private WebElement newTextField;
 	@FindBy(id="134-selectable")private WebElement selectGroup;
@@ -24,37 +26,42 @@ public class ManageCategoryPage {
 	@FindBy(xpath="//button[text()='Save']")private WebElement saveButton;
 	@FindBy(xpath="//div[@class='alert alert-success alert-dismissible']")private WebElement alertTrue;
 	
-	public void clickCategory() {
-		manageCategoryButton.click();
-	}
-	public void createNewButon() {
+	
+	public ManageCategoryPage createNewButon() {
 		createNewButton.click();
+		return this;
 	}
-	public void enterCategoryName(String categoryName) {
+	public ManageCategoryPage enterCategoryName(String categoryName) {
 		newTextField.sendKeys(categoryName);
+		return this;
 	}
-	public void selectGroup() {
+	public ManageCategoryPage selectGroup() {
 		selectGroup.click();
+		return this;
 	}
-	public void selectimagefile() {
-		imageFile.sendKeys("C:\\Users\\msman\\git\\7RmSupermarket_Project\\7rmartsupermarket\\src\\test\\resources\\Mahindra BE 6E Price and Specifications Info _ Droom.jpg");
+	public ManageCategoryPage selectimagefile() {
+		imageFile.sendKeys(Constant.IMAGEFILE4CATEGORY);
+		return this;
 		
 	}
-	public void topMenuradio() {
+	public ManageCategoryPage topMenuradio() {
 		JavascriptExecutor jsradio=(JavascriptExecutor)driver;
 		jsradio.executeScript("arguments[0].click();", topMenuradio);		
 		//jsradio.executeScript("window.scrollBy(0,150)", "");
+		return this;
 		
 	}
-	public void leftMenuRadio() {
+	public ManageCategoryPage leftMenuRadio() {
 		JavascriptExecutor jsrightradio=(JavascriptExecutor)driver;
 		jsrightradio.executeScript("arguments[0].click();", leftMenuRadio);
 		jsrightradio.executeScript("window.scrollBy(0,150)", "");
+		return this;
 	}
-	public void saveButton() {
+	public ManageCategoryPage saveButton() {
 		JavascriptExecutor jsrightradio=(JavascriptExecutor)driver;
 		jsrightradio.executeScript("arguments[0].click();", saveButton);
 		//jsrightradio.executeScript("window.scrollBy(0,150)", "");
+		return this;
 	}
 	
 	public boolean getAlertText() {
