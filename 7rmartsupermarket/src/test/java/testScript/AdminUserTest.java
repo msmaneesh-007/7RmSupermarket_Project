@@ -42,15 +42,12 @@ public class AdminUserTest extends Base{
 		String username=ExcelUtility.getStringData(0, 0,"Login page");
 		String password=ExcelUtility.getStringData(0, 1, "Login page");
 		LoginPage login=new LoginPage(driver);
-		login.enterUserNameOnUserNameField(username);
-		login.enterPasswordOnPasswordField(password);
-		login.clickRememberMe();
+		login.enterUserNameOnUserNameField(username).enterPasswordOnPasswordField(password).clickRememberMe();
 		home=login.clickSignInButton();
 		admin=home.adminUserCreationWindow();
 		admin.searchoption();
 		String userDataToSearch=ExcelUtility.getStringData(0, 0,"AdmincreationPage");
-		admin.userSearchWithNameAndType(userDataToSearch);
-		admin.userTypeForUserSearch();
+		admin.userSearchWithNameAndType(userDataToSearch).userTypeForUserSearch();
 		boolean isTextdisplayedinresult=admin.textinresulthWindow();
 		Assert.assertTrue(isTextdisplayedinresult, Messages.USERSEARCHFAILERROR);
 		
